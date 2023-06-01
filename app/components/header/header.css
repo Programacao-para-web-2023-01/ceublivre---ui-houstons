@@ -1,0 +1,8 @@
+header {
+	background: #C9AC16;
+	padding: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: row-reverse;
+}
