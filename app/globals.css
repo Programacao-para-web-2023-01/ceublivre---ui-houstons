@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --font-family: 'Montserrat', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +26,105 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+header {
+	background: #C9AC16;
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.cartButton {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: black;
+  font-size: 4em;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 3em;
+}
+
+.cart-overlay {
+  position: relative;
+  left: 105em;
+  position: absolute;
+  top: 100%;
+  width: 60vw;
+  color: black;
+}
+
+.cart-window {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  max-height: 30vh;
+  overflow-y: auto;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.cart-title {
+  color: black;
+  font-weight: 700;
+  font-size: 24px;
+  border-bottom: black 1px solid;
+}
+
+.item {
+  color: black;
+}
+
+.list-item{
+  margin-top: 10px;
+}
+
+.topics-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.topic {
+  flex: 1;
+  font-weight: bold;
+}
+
+.fridge-items-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fridge-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 10px; 
+}
+
+.item-name {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.item-price,
+.item-quantity {
+  margin-bottom: 5px;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
