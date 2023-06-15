@@ -54,11 +54,10 @@ header {
 }
 
 .cart-overlay {
-  position: relative;
   left: 105em;
   position: absolute;
   top: 100%;
-  width: 60vw;
+  width: 400px;
   color: black;
 }
 
