@@ -25,5 +25,3 @@ const CartButton: React.FC = () => {
 };
 
 export default CartButton;
-
-

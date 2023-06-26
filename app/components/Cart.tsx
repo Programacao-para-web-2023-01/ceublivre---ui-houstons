@@ -1,23 +1,37 @@
-import React from 'react';
+"use client";
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import process from "process";
 
-const fridgeItems = [
-  {
-    id: 1,
-    name: 'Geladeira',
-    image: '/caminho/para/imagem1.jpg',
-    price: 1999.99,
-    quantity: 5,
-  },
-  {
-    id: 2,
-    name: 'Geladeira',
-    image: '/caminho/para/imagem2.jpg',
-    price: 2499.99,
-    quantity: 3,
-  },
-];
 
-const Cart: React.FC = () => {
+interface Item {
+  product: number;
+  quantity: number;
+}
+
+interface UserOrder {
+  items: Item[];
+  key: string;
+  user: number;
+}
+
+export default function Cart() {
+  const [userOrder, setUserOrder] = useState<UserOrder[]>([]);
+
+  useEffect(() => {
+    const apiUrl = process.env.url
+    console.log(apiUrl)
+
+    fetch(`${apiUrl}/cart/user/2`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((data:UserOrder[]) => setUserOrder(data))
+  }, []);
+
   return (
     <div className="cart-overlay">
       <div className="cart-window">
@@ -29,12 +43,12 @@ const Cart: React.FC = () => {
         </div>
 
         <div className="fridge-items-container">
-          {fridgeItems.map((item) => (
-            <div className="fridge-item" key={item.id}>
-              <div className="item-name">{item.name}</div>
-              <div className="item-price">R${item.price}</div>
-              <div className="item-quantity">{item.quantity}</div>
-              {/* <img src={item.image} alt={item.name} /> */}
+          {userOrder.map((item) => (
+            <div className="fridge-item" key={item.key}>
+              <div className="item-name">{item.key}</div>
+              <div className="item-price">R${item.user}</div>
+              {/* <div className="item-quantity">{item.items}</div>
+              <Image src={image} alt="poster" width={400} height={500} /> */}
             </div>
           ))}
         </div>
@@ -42,5 +56,3 @@ const Cart: React.FC = () => {
     </div>
   );
 };
-
-export default Cart;

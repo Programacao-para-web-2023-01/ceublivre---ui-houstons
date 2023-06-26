@@ -54,7 +54,7 @@ header {
 }
 
 .cart-overlay {
-  left: 105em;
+  left: 75%;
   position: absolute;
   top: 100%;
   width: 400px;
