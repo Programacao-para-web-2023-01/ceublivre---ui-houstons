@@ -3,40 +3,43 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 interface Update {
-    id: string
-    product: number
-    quantity: number
+  id: string;
+  product: string;
+  quantity: number;
+  onQuantityChange: (productId: string, quantity: number) => void;
 }
 
-function NumberInput({id, product, quantity}: Update) {
+function NumberInput({ id, product, quantity, onQuantityChange }: Update) {
   const [value, setValue] = useState(quantity);
   const apiUrl = process.env.NEXT_PUBLIC_REACT_APP_URL;
 
-    const updateCart = async (q:any) => {
-        const url = `${apiUrl}/cart/${id}/items/product/${product}/quantity/${q}`;
+  const updateQuantity = async (newQuantity: number) => {
+    setValue(newQuantity);
+    onQuantityChange(product, newQuantity);
+    
+    const url = `${apiUrl}/cart/${id}/items/product/${product}/quantity/${newQuantity}`;
 
-        try {
-            const response = await axios.put(url, null, {
-            headers: {
-                accept: 'application/json',
-            },
-            });
+    try {
+      const response = await axios.put(url, null, {
+        headers: {
+          accept: 'application/json',
+        },
+      });
 
-            console.log(response.data); // Dados da resposta da API
-        } catch (error) {
-            console.error(error);
-        }
-    };
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    const decrement = () => {
-        setValue((prevValue) => prevValue - 1);
-        updateCart(value - 1);
-    };
+  const decrement = () => {
+    const newValue = Math.max(1, value - 1);
+    updateQuantity(newValue);
+  };
 
-    const increment = () => {
-        setValue(prevValue => prevValue + 1);
-        updateCart(value +1);
-    };
+  const increment = () => {
+    updateQuantity(value + 1);
+  };
 
   return (
     <div className="custom-number-input h-10 w-32">
@@ -60,4 +63,4 @@ function NumberInput({id, product, quantity}: Update) {
   );
 }
 
-export default NumberInput;
+export default NumberInput;

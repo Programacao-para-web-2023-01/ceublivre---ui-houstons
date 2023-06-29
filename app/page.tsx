@@ -1,6 +1,5 @@
 "use client"
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Header from "./components/header";
 import Image from 'next/image';
 import AddButton from './components/AddButton';
@@ -29,6 +28,7 @@ export default function Home() {
       items: [],
     };
 
+    
     const url = `${apiUrl}/cart/`;
 
     fetch(url, {
@@ -39,14 +39,15 @@ export default function Home() {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((responseData:any) => {localStorage.setItem('chave', responseData.key);})
+      .then((responseData:any) => {
+        localStorage.setItem('chave', responseData.key);
+        setChave(responseData.key);
+      })
 
     setInputValue('');
   };
 
-  useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_REACT_APP_URL;
-
+  const refreshProducts = useCallback(() => {
     fetch(`${apiUrl}/product`, {
       method: 'GET',
       headers: {
@@ -54,8 +55,12 @@ export default function Home() {
       },
     })
     .then((response) => response.json())
-    .then((data:any[]) => setProduct(data))
-  }, []);
+    .then((data:any[]) => setProduct(data));
+  }, [apiUrl]);
+
+  useEffect(() => {
+    refreshProducts();
+  }, [refreshProducts]);
 
   return (
     <div>
@@ -76,12 +81,14 @@ export default function Home() {
             <p className="text-gray-700 text-white">R$ {item.price}</p>
             <AddButton 
               product={item.key}
-            />
+              chave={chave}
+              onAdd={refreshProducts}
+              />
           </div>
         </div>
         ))}
         </div>
       </main>
-    </div>
+   </div>
   );
 }

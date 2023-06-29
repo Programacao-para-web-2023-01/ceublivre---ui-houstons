@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
 
-
 interface Props {
-  product: number;
+  product: string;
+  chave: string;
+  onAdd: () => void;
 }
 
-function AddButton({ product }: Props) {
+function AddButton({ product, chave, onAdd }: Props) {
   const apiUrl = process.env.NEXT_PUBLIC_REACT_APP_URL;
-  const key = localStorage.getItem("chave");
+  const key = chave;
 
   const addProduct = async () => {
     console.log(key)
@@ -20,10 +21,11 @@ function AddButton({ product }: Props) {
           'Content-Type': 'application/json',
         },
       })
+      .then(() => onAdd());
     }
 
   return (
-    <button onClick={addProduct} className='trash-button'>Adicionar Produto</button>
+    <button onClick={addProduct} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-20 rounded">Adicionar Produto</button>
   );
 }
 
