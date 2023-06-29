@@ -61,26 +61,6 @@ header {
   color: black;
 }
 
-/* .cart-window {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 100%;
-  max-height: 40vh;
-  overflow-y: auto;
-  border-radius: 5px;
-  text-align: center;
-} */
-
-/* .cart-title {
-  color: black;
-  font-weight: 700;
-  font-size: 24px;
-  border-bottom: black 1px solid;
-} */
-
 .fridge-items-container {
   margin-bottom: 2em;
 }
