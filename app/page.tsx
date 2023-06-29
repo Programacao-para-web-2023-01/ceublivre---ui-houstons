@@ -68,8 +68,8 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <section className="bg-white dark:bg-gray-900">
           <div className="rounded-lg bg-gray-700 p-6 text-neutral-700 white-lg white:bg-neutral-600 white:text-neutral-200 white:shadow-black/30">
-            <input type="text" value={inputValue} onChange={handleChange} placeholder='Enter a value' />
-            <button onClick={handleButtonClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Store in Local Storage</button>
+            <input type="text" value={inputValue} onChange={handleChange} placeholder='Coloque o id do usuário' />
+            <button onClick={handleButtonClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enviar</button>
           </div>
         </section>
         <div className="flex flex-wrap justify-center">

@@ -139,3 +139,13 @@ header {
 .item-quantity {
   margin-bottom: 20px;
 }
+
+.detail {
+  margin: 0 50px;
+}
+
+.total-price {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
