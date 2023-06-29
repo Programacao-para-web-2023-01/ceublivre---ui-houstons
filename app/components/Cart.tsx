@@ -95,7 +95,7 @@ export default function Cart() {
                     </li>
                   </ul>
                   <ul className="quantity-price">
-                    <li>
+                    <li className="item-quantity">
                       {userOrder && <NumberInput
                         id={userOrder.key}
                         product={productDetail.product.key}
